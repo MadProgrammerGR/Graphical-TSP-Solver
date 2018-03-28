@@ -30,9 +30,10 @@ namespace Graphical_TSP_Solver {
 
             //o kainourgios plh8ysmos prepei na apo8hkeuetai se diaforetiko 2d pinaka
             //alliws se mia genia 8a epilegontan paidia twn paidiwn
-            int[][] nextChros = (int[][])chros.Clone();//idiou mege8ous
-            double[] fitnesses = calcFitnesses();
+            int[][] nextChros = new int[NUM_CHROMOSOMES][];//(int[][])chros.Clone();//idiou mege8ous
+            for(int i = 0;i < nextChros.Length;i++) nextChros[i] = new int[G.Length];
 
+            double[] fitnesses = calcFitnesses();
             double batchBestFitness = fitnesses.Max();
             double totalBestFitness = batchBestFitness;
             totalBestChromosome = (int[])chros[Array.IndexOf(fitnesses, batchBestFitness)].Clone(); //argmax
@@ -51,18 +52,24 @@ namespace Graphical_TSP_Solver {
                         if(mutationOp == "swap") {
                             swapMutate(childs[0]);
                             swapMutate(childs[1]);
-                        } else {
+                        } else if(mutationOp == "reverse") {
                             reverseMutate(childs[0]);
                             reverseMutate(childs[1]);
+                        } else {
+                            shuffleArray(childs[0]);
+                            shuffleArray(childs[1]);
                         }
                     }
 
                     nextChros[2 * i] = childs[0];
                     nextChros[2 * i + 1] = childs[1];
                 }
-                chros = (int[][])nextChros.Clone();
-                fitnesses = calcFitnesses();
+                //swap chros nextChros
+                int[][] tmp = chros;
+                chros = nextChros;
+                nextChros = tmp;
 
+                fitnesses = calcFitnesses();
                 double currMaxFitness = fitnesses.Max();
                 currBestChromosome = (int[])chros[Array.IndexOf(fitnesses, currMaxFitness)].Clone(); //argmax
 
@@ -156,7 +163,6 @@ namespace Graphical_TSP_Solver {
             }
             return c;
         }
-
 
         //dialegei tyxaia N shmeia kophs (N=cuts pou exei dwsei o xrhsths kai ta arxikopoiei me tyxaio tropo
         //gia na ekfrazoun ta shmeia auta "egkyra"(mporei na einai kena) diasthmata

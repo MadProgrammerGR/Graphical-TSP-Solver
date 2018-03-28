@@ -46,6 +46,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.stopB = new System.Windows.Forms.Button();
             this.generationL = new System.Windows.Forms.Label();
+            this.randomMutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.canvas1 = new Graphical_TSP_Solver.Canvas();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -89,21 +90,21 @@
             // randomCitiesToolStripMenuItem
             // 
             this.randomCitiesToolStripMenuItem.Name = "randomCitiesToolStripMenuItem";
-            this.randomCitiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.randomCitiesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.randomCitiesToolStripMenuItem.Text = "Random Cities";
             this.randomCitiesToolStripMenuItem.Click += new System.EventHandler(this.randomCitiesToolStripMenuItem_Click);
             // 
             // placeCitiesToolStripMenuItem
             // 
             this.placeCitiesToolStripMenuItem.Name = "placeCitiesToolStripMenuItem";
-            this.placeCitiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.placeCitiesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.placeCitiesToolStripMenuItem.Text = "Place Cities";
             this.placeCitiesToolStripMenuItem.Click += new System.EventHandler(this.placeCitiesToolStripMenuItem_Click);
             // 
             // giveMatrixToolStripMenuItem
             // 
             this.giveMatrixToolStripMenuItem.Name = "giveMatrixToolStripMenuItem";
-            this.giveMatrixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.giveMatrixToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.giveMatrixToolStripMenuItem.Text = "Give Matrix";
             this.giveMatrixToolStripMenuItem.Click += new System.EventHandler(this.giveMatrixToolStripMenuItem_Click);
             // 
@@ -162,7 +163,8 @@
             this.mutationRateToolStripMenuItem,
             this.toolStripSeparator1,
             this.swapMutationToolStripMenuItem,
-            this.reverseMutationToolStripMenuItem});
+            this.reverseMutationToolStripMenuItem,
+            this.randomMutationToolStripMenuItem});
             this.mutationToolStripMenuItem.Name = "mutationToolStripMenuItem";
             this.mutationToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.mutationToolStripMenuItem.Text = "Mutation";
@@ -170,28 +172,28 @@
             // mutationRateToolStripMenuItem
             // 
             this.mutationRateToolStripMenuItem.Name = "mutationRateToolStripMenuItem";
-            this.mutationRateToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.mutationRateToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.mutationRateToolStripMenuItem.Text = "Mutation Rate";
             this.mutationRateToolStripMenuItem.Click += new System.EventHandler(this.mutationRateToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
             // swapMutationToolStripMenuItem
             // 
             this.swapMutationToolStripMenuItem.Checked = true;
             this.swapMutationToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.swapMutationToolStripMenuItem.Name = "swapMutationToolStripMenuItem";
-            this.swapMutationToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.swapMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.swapMutationToolStripMenuItem.Text = "Swap Mutation";
             this.swapMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
             // 
             // reverseMutationToolStripMenuItem
             // 
             this.reverseMutationToolStripMenuItem.Name = "reverseMutationToolStripMenuItem";
-            this.reverseMutationToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.reverseMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.reverseMutationToolStripMenuItem.Text = "Reverse Mutation";
             this.reverseMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
             // 
@@ -250,6 +252,13 @@
             this.generationL.Size = new System.Drawing.Size(86, 17);
             this.generationL.TabIndex = 6;
             this.generationL.Text = "Generation: 0";
+            // 
+            // randomMutationToolStripMenuItem
+            // 
+            this.randomMutationToolStripMenuItem.Name = "randomMutationToolStripMenuItem";
+            this.randomMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.randomMutationToolStripMenuItem.Text = "Random Mutation";
+            this.randomMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
             // 
             // canvas1
             // 
@@ -316,6 +325,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button stopB;
         private System.Windows.Forms.Label generationL;
+        private System.Windows.Forms.ToolStripMenuItem randomMutationToolStripMenuItem;
     }
 }
 

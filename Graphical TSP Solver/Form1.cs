@@ -145,7 +145,7 @@ namespace Graphical_TSP_Solver {
         }
 
         private void numberOfChromosomesToolStripMenuItem_Click(object sender, EventArgs e) {
-            DialogNum dialog = new DialogNum("#chromosomes", 4, 1000);
+            DialogNum dialog = new DialogNum("#chromosomes", 4, 2000);
             if(dialog.ShowDialog() == DialogResult.OK) {
                 int n = (int)dialog.numericUpDown1.Value;
                 if(n % 2 != 0) {MessageBox.Show("Must be even."); return;}
@@ -189,14 +189,19 @@ namespace Graphical_TSP_Solver {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if(item == swapMutationToolStripMenuItem) {
                 mutationOp = "swap";
-                reverseMutationToolStripMenuItem.Checked = false;
+                reverseMutationToolStripMenuItem.Checked = randomMutationToolStripMenuItem.Checked = false;
                 item.Checked = true;
                 richTextBox1.AppendText("Mutation operator set to Swap.\n");
             } else if(item == reverseMutationToolStripMenuItem) {
                 mutationOp = "reverse";
-                swapMutationToolStripMenuItem.Checked = false;
+                swapMutationToolStripMenuItem.Checked = randomMutationToolStripMenuItem.Checked = false;
                 item.Checked = true;
                 richTextBox1.AppendText("Mutation operator set to Reverse.\n");
+            } else if(item == randomMutationToolStripMenuItem) {
+                mutationOp = "random";
+                swapMutationToolStripMenuItem.Checked = reverseMutationToolStripMenuItem.Checked = false;
+                item.Checked = true;
+                richTextBox1.AppendText("Mutation operator set to Random.\n");
             }
         }
 
