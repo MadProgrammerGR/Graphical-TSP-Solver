@@ -40,14 +40,15 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.swapMutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reverseMutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomMutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.populationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.numberOfChromosomesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startB = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.stopB = new System.Windows.Forms.Button();
             this.generationL = new System.Windows.Forms.Label();
-            this.randomMutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.canvas1 = new Graphical_TSP_Solver.Canvas();
+            this.bestChromosomesPreserveRatioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,8 +184,6 @@
             // 
             // swapMutationToolStripMenuItem
             // 
-            this.swapMutationToolStripMenuItem.Checked = true;
-            this.swapMutationToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.swapMutationToolStripMenuItem.Name = "swapMutationToolStripMenuItem";
             this.swapMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.swapMutationToolStripMenuItem.Text = "Swap Mutation";
@@ -192,15 +191,25 @@
             // 
             // reverseMutationToolStripMenuItem
             // 
+            this.reverseMutationToolStripMenuItem.Checked = true;
+            this.reverseMutationToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.reverseMutationToolStripMenuItem.Name = "reverseMutationToolStripMenuItem";
             this.reverseMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.reverseMutationToolStripMenuItem.Text = "Reverse Mutation";
             this.reverseMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
             // 
+            // randomMutationToolStripMenuItem
+            // 
+            this.randomMutationToolStripMenuItem.Name = "randomMutationToolStripMenuItem";
+            this.randomMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.randomMutationToolStripMenuItem.Text = "Random Mutation";
+            this.randomMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
+            // 
             // populationToolStripMenuItem
             // 
             this.populationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.numberOfChromosomesToolStripMenuItem});
+            this.numberOfChromosomesToolStripMenuItem,
+            this.bestChromosomesPreserveRatioToolStripMenuItem});
             this.populationToolStripMenuItem.Name = "populationToolStripMenuItem";
             this.populationToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.populationToolStripMenuItem.Text = "Population";
@@ -208,7 +217,7 @@
             // numberOfChromosomesToolStripMenuItem
             // 
             this.numberOfChromosomesToolStripMenuItem.Name = "numberOfChromosomesToolStripMenuItem";
-            this.numberOfChromosomesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.numberOfChromosomesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.numberOfChromosomesToolStripMenuItem.Text = "Total Chromosomes ";
             this.numberOfChromosomesToolStripMenuItem.Click += new System.EventHandler(this.numberOfChromosomesToolStripMenuItem_Click);
             // 
@@ -253,13 +262,6 @@
             this.generationL.TabIndex = 6;
             this.generationL.Text = "Generation: 0";
             // 
-            // randomMutationToolStripMenuItem
-            // 
-            this.randomMutationToolStripMenuItem.Name = "randomMutationToolStripMenuItem";
-            this.randomMutationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.randomMutationToolStripMenuItem.Text = "Random Mutation";
-            this.randomMutationToolStripMenuItem.Click += new System.EventHandler(this.mutationToolStrip_Click);
-            // 
             // canvas1
             // 
             this.canvas1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -270,6 +272,13 @@
             this.canvas1.TabIndex = 0;
             this.canvas1.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas1_Paint);
             this.canvas1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canvas1_MouseClick);
+            // 
+            // bestChromosomesPreserveRatioToolStripMenuItem
+            // 
+            this.bestChromosomesPreserveRatioToolStripMenuItem.Name = "bestChromosomesPreserveRatioToolStripMenuItem";
+            this.bestChromosomesPreserveRatioToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.bestChromosomesPreserveRatioToolStripMenuItem.Text = "Best Chromosomes\' Preserve Ratio";
+            this.bestChromosomesPreserveRatioToolStripMenuItem.Click += new System.EventHandler(this.bestChromosomesPreserveRatioToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -326,6 +335,7 @@
         private System.Windows.Forms.Button stopB;
         private System.Windows.Forms.Label generationL;
         private System.Windows.Forms.ToolStripMenuItem randomMutationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bestChromosomesPreserveRatioToolStripMenuItem;
     }
 }
 

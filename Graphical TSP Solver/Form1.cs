@@ -13,6 +13,14 @@ namespace Graphical_TSP_Solver {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            richTextBox1.AppendText("Default Values"
+                + "\nMax generations: " + MAX_GENERATIONS
+                + "\nMax unimproved generation count: " + FITNESS_CHECK_RATE
+                + "\nPopulation size: " + NUM_CHROMOSOMES
+                + "\nBest chromosomes' preserve ratio: " + BEST_CHROMOSOMES_PRESERVE_RATIO * 100 + "%"
+                + "\nMutation ratio: " + MUTATION_RATE * 100 + "%"
+                + "\nMutation Operator: " + mutationOp
+                + "\nCrossover Operator: " + crossoverOp + "\n\n");
         }
         
         Point[] cities;
@@ -267,6 +275,15 @@ namespace Graphical_TSP_Solver {
             return sb.Append("]").ToString();
         }
 
+        private void bestChromosomesPreserveRatioToolStripMenuItem_Click(object sender, EventArgs e) {
+            DialogNum dialog = new DialogNum("Preserve ratio %", 0, 100);
+            if(dialog.ShowDialog() == DialogResult.OK) {
+                int n = (int)dialog.numericUpDown1.Value;
+                BEST_CHROMOSOMES_PRESERVE_RATIO = n / 100.0;
+                richTextBox1.AppendText("Best chromosomes' preserve ratio set to " + n + "%.\n");
+            }
+            dialog.Dispose();
+        }
     }
 
 }

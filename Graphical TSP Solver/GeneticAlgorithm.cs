@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +12,16 @@ namespace Graphical_TSP_Solver {
         Random rand = new Random();
         double[][] G;
         int[][] chros; //plh8ysmos
-        int NUM_CHROMOSOMES = 8;
-        int MAX_GENERATIONS = 100;
-        int FITNESS_CHECK_RATE = 50;
-        double MUTATION_RATE = 0.05;
-        int[] totalBestChromosome, currBestChromosome;
-        int generation;
+        int NUM_CHROMOSOMES = 8; //mege8os plh8ysmou
+        int MAX_GENERATIONS = 100; //megistos ari8mos genewn
+        int FITNESS_CHECK_RATE = 50; //ka8e pote elenxetai an veltiw8hke
+        double MUTATION_RATE = 0.05; //pososto metalla3hs
+        double BEST_CHROMOSOMES_PRESERVE_RATIO = 0.7; //pososto twn kalyterwn xrwmoswmatwn pou diathrountai kai sthn epomenh genia
+        int[] totalBestChromosome, currBestChromosome; //synolika/twrinhs-genias kalytero antistoixa
+        int generation; //twrinh genia
         int cuts; //gia thn periptwsh tou N-Point crossover
         String crossoverOp = "pmx";
-        String mutationOp = "swap";
+        String mutationOp = "reverse";
 
         //genetic algorithm
         private void solve() {
@@ -40,14 +42,21 @@ namespace Graphical_TSP_Solver {
             int bestGeneration = 0;
             generation = 0;
             while(++generation < MAX_GENERATIONS) {
-
                 double[] probs = selectionProbabilies(fitnesses);
-                for(int i = 0;i < chros.Length / 2;i++) {
+
+                //vale ena pososto twn kalyterwn xrwmoswmatwn kateuteian sthn epomenh genia
+                int offset = (int)(BEST_CHROMOSOMES_PRESERVE_RATIO * chros.Length);
+                if(BEST_CHROMOSOMES_PRESERVE_RATIO != 0) {
+                    int[] index = Enumerable.Range(0, probs.Length).ToArray();
+                    Array.Sort(probs, index); //dinei se au3ousa
+                    for(int i = 0;i < offset;i++)
+                        nextChros[i] = chros[index[index.Length-1 - i]]; //dialegw apo to telos gia ta megista
+                }
+
+                for(int i = offset - offset % 2;i < chros.Length;i += 2) { //an to offset einai perittos tote agnow to katwtero xrwmoswma tou prohgoumenou vhmatos
                     int[] parent1 = chros[pickRandomIndex(probs)];
                     int[] parent2 = chros[pickRandomIndex(probs)];
-
                     int[][] childs = (crossoverOp == "pmx") ? pmxCrossover(parent1, parent2) : orderCrossover(parent1, parent2);
-
                     if(rand.NextDouble() < MUTATION_RATE) {
                         if(mutationOp == "swap") {
                             swapMutate(childs[0]);
@@ -60,10 +69,10 @@ namespace Graphical_TSP_Solver {
                             shuffleArray(childs[1]);
                         }
                     }
-
-                    nextChros[2 * i] = childs[0];
-                    nextChros[2 * i + 1] = childs[1];
+                    nextChros[i] = childs[0];
+                    nextChros[i + 1] = childs[1];
                 }
+
                 //swap chros nextChros
                 int[][] tmp = chros;
                 chros = nextChros;
@@ -233,11 +242,9 @@ namespace Graphical_TSP_Solver {
             return 0; //de symvainei pote dioti s=S(p[i])=1 kai to r vrisketai [0,1)
         }
 
+        //tyxaia meta8esh
         public int[] randomPermutation(int n) {
-            //tautotikh meta8esh
-            int[] perm = new int[n];
-            for(int i = 0;i < n;i++) perm[i] = i;
-            //anakatema auths
+            int[] perm = Enumerable.Range(0, n).ToArray();
             shuffleArray(perm);
             return perm;
         }
