@@ -42,17 +42,16 @@ namespace Graphical_TSP_Solver {
             int bestGeneration = 0;
             generation = 0;
             while(++generation < MAX_GENERATIONS) {
-                double[] probs = selectionProbabilies(fitnesses);
 
                 //vale ena pososto twn kalyterwn xrwmoswmatwn kateuteian sthn epomenh genia
                 int offset = (int)(BEST_CHROMOSOMES_PRESERVE_RATIO * chros.Length);
                 if(BEST_CHROMOSOMES_PRESERVE_RATIO != 0) {
-                    int[] index = Enumerable.Range(0, probs.Length).ToArray();
-                    Array.Sort(probs, index); //dinei se au3ousa
+                    Array.Sort(fitnesses, chros); //ta3inomhsh xrwmoswmatwn me vash to fitness (se au3ousa)
                     for(int i = 0;i < offset;i++)
-                        nextChros[i] = chros[index[index.Length-1 - i]]; //dialegw apo to telos gia ta megista
+                        nextChros[i] = chros[chros.Length - 1 - i]; //dialegw apo to telos gia ta megista
                 }
 
+                double[] probs = selectionProbabilies(fitnesses);
                 for(int i = offset - offset % 2;i < chros.Length;i += 2) { //an to offset einai perittos tote agnow to katwtero xrwmoswma tou prohgoumenou vhmatos
                     int[] parent1 = chros[pickRandomIndex(probs)];
                     int[] parent2 = chros[pickRandomIndex(probs)];
